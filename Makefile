@@ -43,15 +43,19 @@ run-producer:
 			--broker-list localhost:9192,localhost:9292,localhost:9392 \
 			--topic my-topic-3
 
-c-topic:
+mk-topic:
 	cd $(kafka_home); ./bin/kafka-topics.sh --zookeeper localhost:2181 \
 		--create \
 		--replication-factor 3 --partitions 1 \
 		--topic $(topic_name)
 
-d-topic:
+list-topic:
 	cd $(kafka_home); ./bin/kafka-topics.sh --zookeeper localhost:2181 \
 		--describe
+
+desc-topic:
+	cd $(kafka_home); ./bin/kafka-topics.sh --zookeeper localhost:2181 \
+		--describe --topic $(topic_name)
 
 gen-config: kafka-x.properties.erb
 	./gen-config.rb

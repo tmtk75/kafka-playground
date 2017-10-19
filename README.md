@@ -4,6 +4,15 @@
 This section is based on https://kafka.apache.org/quickstart.
 You will need six terminals.
 
+### Install kafka locally
+```
+$ ansible-playbook playbook-local.yml
+...
+$ ls kafka_2.11-0.11.0.1
+...
+```
+
+
 ### Kafka cluster & create a topic
 Let's you have four terminals to launch kafka cluster.
 One ZK process and three kafka processes.
@@ -23,7 +32,7 @@ One ZK process and three kafka processes.
 ```
 
 ```
-[5]$ make c-topic
+[5]$ make mk-topic
 ...
 ```
 

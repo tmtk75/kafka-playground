@@ -21,10 +21,13 @@
       shell: |
         tar xvfz ./kafka_2.11-{{ kafka_version }}.tgz
 
-    - template:
-        src: ./roles/kafka/templates/server.properties
-        dest: ./kafka_2.11-{{ kafka_version }}/config/server-{{ item }}.properties
-      with_items: [1, 2, 3]
-      tags:
-        - kafka.config
+    #
+    # Use ./gen-config.rb instead of here
+    #
+    #- template:
+    #    src: ./roles/kafka/templates/server.properties
+    #    dest: ./kafka_2.11-{{ kafka_version }}/config/server-{{ item }}.properties
+    #  with_items: [1, 2, 3]
+    #  tags:
+    #    - kafka.config
 
