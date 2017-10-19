@@ -52,3 +52,6 @@ c-topic:
 d-topic:
 	cd $(kafka_home); ./bin/kafka-topics.sh --zookeeper localhost:2181 \
 		--describe
+
+gen-config: kafka-x.properties.erb
+	./gen-config.rb

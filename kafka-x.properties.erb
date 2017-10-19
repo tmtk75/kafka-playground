@@ -1,0 +1,15 @@
+broker.id=<%= broker_id %>
+listeners=PLAINTEXT://:<%= port %>
+#advertised.listeners=PLAINTEXT://:<%= port %>
+log.dirs=/tmp/kafka-logs.<%= broker_id %>
+zookeeper.connect=localhost:2181
+
+## retention
+### Log
+log.retention.ms=10000
+#log.retention.minutes=
+#log.retention.hours=
+
+### Offsets
+offsets.retention.check.interval.ms=5000
+offsets.retention.minutes=1
