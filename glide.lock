@@ -1,0 +1,74 @@
+hash: 73c01b1b1e130270882754fffe7667368b0f6f24a19f07d21cbb6a2cec65a411
+updated: 2017-10-11T10:18:21.199285412+09:00
+imports:
+- name: github.com/bsm/sarama-cluster
+  version: c4d3d28d22e7bdea71656725bf5cd1d988454b41
+- name: github.com/davecgh/go-spew
+  version: ecdeabc65495df2dec95d7c4a4c3e021903035e5
+  subpackages:
+  - spew
+- name: github.com/db7/kazoo-go
+  version: ef4f7dc0b6f69bb0478d216f3491fa2508de2940
+- name: github.com/eapache/go-resiliency
+  version: b1fe83b5b03f624450823b751b662259ffc6af70
+  subpackages:
+  - breaker
+- name: github.com/eapache/go-xerial-snappy
+  version: bb955e01b9346ac19dc29eb16586c90ded99a98c
+- name: github.com/eapache/queue
+  version: 44cc805cf13205b55f69e14bcb69867d1ae92f98
+- name: github.com/facebookgo/ensure
+  version: b4ab57deab51ee655ae4bd85281f0715a068016d
+- name: github.com/facebookgo/stack
+  version: 751773369052141c013c6e827a71e8f35c07879c
+- name: github.com/facebookgo/subset
+  version: 8dac2c3c48703541e481feddf22975953d4ff842
+- name: github.com/golang/mock
+  version: 6e20fef50e74e443696bc32b693cf286b612d45b
+  subpackages:
+  - gomock
+- name: github.com/golang/protobuf
+  version: 130e6b02ab059e7b717a096f397c5b60111cae74
+  subpackages:
+  - proto
+- name: github.com/golang/snappy
+  version: 553a641470496b2327abcac10b36396bd98e45c9
+- name: github.com/lovoo/goka
+  version: 965e50dc77163a0b803dcf631701626e327f8af9
+  subpackages:
+  - codec
+  - kafka
+  - logger
+  - storage
+- name: github.com/pierrec/lz4
+  version: 08c27939df1bd95e881e2c2367a749964ad1fceb
+- name: github.com/pierrec/xxHash
+  version: a0006b13c722f7f12368c00a3d3c2ae8a999a0c6
+  subpackages:
+  - xxHash32
+- name: github.com/rcrowley/go-metrics
+  version: 1f30fe9094a513ce4c700b9a54458bbb0c96996c
+- name: github.com/samuel/go-zookeeper
+  version: e6b59f6144beb8570562539c1898a0b1fea34b41
+  subpackages:
+  - zk
+- name: github.com/segmentio/kafka-go
+  version: 1aaa42ea00fb1549c611c398918b65b9d8e0c669
+- name: github.com/Shopify/sarama
+  version: c01858abb625b73a3af51d0798e4ad42c8147093
+- name: github.com/syndtr/goleveldb
+  version: b89cc31ef7977104127d34c1bd31ebd1a9db2199
+  subpackages:
+  - leveldb
+  - leveldb/cache
+  - leveldb/comparer
+  - leveldb/errors
+  - leveldb/filter
+  - leveldb/iterator
+  - leveldb/journal
+  - leveldb/memdb
+  - leveldb/opt
+  - leveldb/storage
+  - leveldb/table
+  - leveldb/util
+testImports: []

@@ -1,0 +1,17 @@
+[Unit]
+Description=zookeeper
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory={{ kafka_homedir }}
+#EnvironmentFile=
+#Environment=
+Restart=on-failure
+ExecStart={{ kafka_homedir }}/bin/zookeeper-server-start.sh config/zookeeper.properties
+#ExecReload=/bin/kill -HUP $MAINPID
+#ExecStop=
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

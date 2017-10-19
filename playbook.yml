@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - block:
+      - selinux:
+          state: disabled
+
+      - service:
+          name: firewalld
+          state: stopped
+      tags:
+        - network
+
+    - include_role:
+        name: kafka

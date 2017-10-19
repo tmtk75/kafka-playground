@@ -1,0 +1,134 @@
+---
+- name: Install java-1.8.0-openjdk
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - java-1.8.0-openjdk
+    - nc
+  tags:
+    - kafka.java
+
+- block:
+  - name: Mkdir /opt/kafka
+    file:
+      path: /opt/kafka
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Download tarball
+    get_url:
+      url: http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/kafka/{{ kafka_version }}/kafka_2.11-{{ kafka_version }}.tgz
+      dest: /opt/kafka
+      mode: 0644
+      checksum: "sha256:0da77e1e542cf097d6025309bc996c10ceda394839c041934b86d8729ab574f1"
+
+  - name: Extract the tarball
+    unarchive:
+      remote_src: yes
+      src: /opt/kafka/kafka_2.11-{{ kafka_version }}.tgz
+      dest: /opt/kafka
+    tags: kafka.unarchive
+ 
+- block:
+  - name: Mkdir zookeeper dataDir
+    file:
+      path: "{{ zookeeper_dataDir }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Put zookeeper myid
+    template:
+      src: ./zookeeper.myid
+      dest: "{{ zookeeper_dataDir }}/myid"
+      owner: root
+      group: root
+      mode: 0644
+    tags:
+      - zookeeper.myid
+  
+  - name: Put zookeeper.properties
+    template:
+      src: ./zookeeper.properties
+      dest: "{{ kafka_homedir }}/config/zookeeper.properties"
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart zookeeper
+    tags:
+      - zookeeper.config
+ 
+  - name: Put zookeeper.service
+    template:
+      src: ./zookeeper.service
+      dest: /etc/systemd/system/zookeeper.service
+      owner: root
+      group: root
+      mode: 0644
+    #when: ansible_distribution_major_version in ["7"]
+    notify:
+      - systemctl daemon-reload
+    tags:
+      - zookeeper.systemd
+      - zookeeper.systemd.service
+  
+  - name: Start zookeeper
+    service:
+      name: zookeeper
+      state: started
+      enabled: yes
+    tags:
+      - zookeeper.service
+
+  tags: zookeeper
+
+- block:
+  - name: Mkdir /opt/kafka
+    file:
+      path: /opt/kafka
+      state: directory
+      mode: 0755
+      owner: root
+      group: root
+ 
+  - name: Put server.properties
+    template:
+      src: ./server.properties
+      dest: "{{ kafka_homedir }}/config"
+    tags:
+      - kafka.config
+      - kafka.config.server
+    notify:
+      - restart kafka
+  
+  - name: Put kafka.service
+    template:
+      src: ./kafka.service
+      dest: /etc/systemd/system/kafka.service
+      owner: root
+      group: root
+      mode: 0644
+    #when: ansible_distribution_major_version in ["7"]
+    notify:
+      - systemctl daemon-reload
+      - restart kafka
+    tags:
+      - kafka.systemd
+      - kafka.systemd.service
+  
+  - name: Start kafka
+    service:
+      name: kafka
+      state: started
+      enabled: yes
+    tags:
+      - kafka.systemd
+      - kafka.systemd.service.start
+
+  tags: kafka
+

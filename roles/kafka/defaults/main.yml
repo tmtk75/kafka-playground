@@ -1,0 +1,7 @@
+kafka_version: 0.11.0.1
+kafka_homedir: /opt/kafka/kafka_2.11-{{ kafka_version }}
+kafka_server_broker_id: 0
+kafka_log_dirs: /tmp/kafka-logs
+
+zookeeper_myid: "{{ kafka_server_broker_id }}"
+zookeeper_dataDir: /tmp/zookeeper

@@ -1,0 +1,5 @@
+package: .
+import:
+- package: github.com/Shopify/sarama
+- package: github.com/segmentio/kafka-go
+- package: github.com/lovoo/goka
