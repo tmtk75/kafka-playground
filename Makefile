@@ -34,8 +34,14 @@ run-kafka3:
 run-consumer:
 	cd $(kafka_home); \
 		./bin/kafka-console-consumer.sh ./config/consumer.properties \
-		--zookeeper localhost:2181 \
+		--bootstrap-server localhost:9192 \
 		--topic $(topic_name)
+
+run-producer:
+	cd $(kafka_home); \
+		./bin/kafka-console-producer.sh \
+			--broker-list localhost:9192,localhost:9292,localhost:9392 \
+			--topic my-topic-3
 
 c-topic:
 	cd $(kafka_home); ./bin/kafka-topics.sh --zookeeper localhost:2181 \
