@@ -8,7 +8,11 @@ zookeeper.connect=localhost:2181
 ### Log
 log.retention.ms=10000
 #log.retention.minutes=
-#log.retention.hours=
+#log.retention.hours=168
+
+#log.cleaner.delete.retention.ms=86400000
+#log.retention.bytes=-1
+#log.retention.check.interval.ms=300000
 
 ### Offsets
 offsets.retention.check.interval.ms=5000
