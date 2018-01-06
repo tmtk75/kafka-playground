@@ -16,7 +16,7 @@ create-topic:
 
 
 ## Local
-kafka_home := kafka_2.11-0.11.0.1
+kafka_home := kafka_2.11-0.11.0.2
 run-zk:
 	cd $(kafka_home); ./bin/zookeeper-server-start.sh config/zookeeper.properties
 dump-zk:
